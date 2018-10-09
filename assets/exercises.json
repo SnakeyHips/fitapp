@@ -1,0 +1,58 @@
+{  
+  "Bench Press":{  
+    "name":"Bench Press",
+    "description":"do it",
+    "areas":"chest,shoulders,triceps",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Barbell Squat":{  
+    "name":"Barbell Squat",
+    "description":"do it",
+    "areas":"quadriceps,glutes,hamstrings",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Conventional Deadlift":{  
+    "name":"Conventional Deadlift",
+    "description":"do it",
+    "areas":"hamstrings,traps",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Overhead Press":{  
+    "name":"Overhead Press",
+    "description":"do it",
+    "areas":"shoulders,chest",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Bicep Curl":{  
+    "name":"Bicep Curl",
+    "description":"do it",
+    "areas":"biceps",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Dumbbell Lunges":{  
+    "name":"Dumbbell Lunges",
+    "description":"do it",
+    "areas":"quadriceps,glutes,hamstrings,calves",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  },
+  "Calve Raises":{  
+    "name":"Calve Raises",
+    "description":"do it",
+    "areas":"calves",
+    "weight":0.0,
+    "sets":0,
+    "reps":0
+  }
+}
