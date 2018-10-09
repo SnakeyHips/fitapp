@@ -1,7 +1,9 @@
+import 'package:fitapp/models/exercise.dart';
+
 class Day {
   String name;
   String description;
-  List<String> exercises;
+  List<Exercise> exercises;
 
   Day({this.name, this.description, this.exercises});
 
@@ -11,7 +13,7 @@ class Day {
     return new Day(
       name: json['name'],
       description: json['description'],
-      exercises: exercisesJson.map((i) => i.toString()).toList()
+      exercises: exercisesJson.map((i) => Exercise.fromJson(i)).toList()
     );
   }
 
