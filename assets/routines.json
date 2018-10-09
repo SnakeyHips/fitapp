@@ -1,0 +1,68 @@
+[  
+  {  
+     "name":"Full Body Hypo",
+     "description":"get it dun",
+     "weeks":[  
+        {  
+           "monday":{  
+              "name":"Monday",
+              "description":"Full Body",
+              "exercises":[  
+                 "BP",
+                 "BS",
+                 "CD",
+                 "OHP"
+              ]
+           },
+           "tuesday":{  
+              "name":"Tuesday",
+              "description":"Day Off",
+              "exercises":[  
+
+              ]
+           },
+           "wednesday":{  
+              "name":"Wednesday",
+              "description":"Full Body",
+              "exercises":[  
+                 "BP",
+                 "BS",
+                 "CD",
+                 "OHP"
+              ]
+           },
+           "thursday":{  
+              "name":"Thursday",
+              "description":"Day Off",
+              "exercises":[  
+
+              ]
+           },
+           "friday":{  
+              "name":"Friday",
+              "description":"Full Body",
+              "exercises":[  
+                 "BP",
+                 "BS",
+                 "CD",
+                 "OHP"
+              ]
+           },
+           "saturday":{  
+              "name":"Saturday",
+              "description":"Day Off",
+              "exercises":[  
+
+              ]
+           },
+           "sunday":{  
+              "name":"Saturday",
+              "description":"Day Off",
+              "exercises":[  
+
+              ]
+           }
+        }
+     ]
+  }
+]
