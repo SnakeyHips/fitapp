@@ -8,10 +8,38 @@
               "name":"Monday",
               "description":"Full Body",
               "exercises":[  
-                 "BP",
-                 "BS",
-                 "CD",
-                 "OHP"
+                 {
+                  "name":"Bench Press",
+                  "description":"do it",
+                  "areas":"chest,shoulders,triceps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                 },
+                 {  
+                  "name":"Barbell Squat",
+                  "description":"do it",
+                  "areas":"quadriceps,glutes,hamstrings",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Conventional Deadlift",
+                  "description":"do it",
+                  "areas":"hamstrings,traps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Overhead Press",
+                  "description":"do it",
+                  "areas":"shoulders,chest",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                }
               ]
            },
            "tuesday":{  
@@ -25,10 +53,38 @@
               "name":"Wednesday",
               "description":"Full Body",
               "exercises":[  
-                 "BP",
-                 "BS",
-                 "CD",
-                 "OHP"
+                {
+                  "name":"Bench Press",
+                  "description":"do it",
+                  "areas":"chest,shoulders,triceps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                 },
+                 {  
+                  "name":"Barbell Squat",
+                  "description":"do it",
+                  "areas":"quadriceps,glutes,hamstrings",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Conventional Deadlift",
+                  "description":"do it",
+                  "areas":"hamstrings,traps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Overhead Press",
+                  "description":"do it",
+                  "areas":"shoulders,chest",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                }
               ]
            },
            "thursday":{  
@@ -42,10 +98,38 @@
               "name":"Friday",
               "description":"Full Body",
               "exercises":[  
-                 "BP",
-                 "BS",
-                 "CD",
-                 "OHP"
+                {
+                  "name":"Bench Press",
+                  "description":"do it",
+                  "areas":"chest,shoulders,triceps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                 },
+                 {  
+                  "name":"Barbell Squat",
+                  "description":"do it",
+                  "areas":"quadriceps,glutes,hamstrings",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Conventional Deadlift",
+                  "description":"do it",
+                  "areas":"hamstrings,traps",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                },
+                {  
+                  "name":"Overhead Press",
+                  "description":"do it",
+                  "areas":"shoulders,chest",
+                  "weight":0.0,
+                  "sets":0,
+                  "reps":0
+                }
               ]
            },
            "saturday":{  
