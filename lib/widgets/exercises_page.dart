@@ -10,6 +10,7 @@ class ExercisesPage extends StatefulWidget {
 class ExercisesPageState extends State<ExercisesPage> {
   TextEditingController controller = new TextEditingController();
   String filter;
+  List<String> exerciseKeys = ExerciseViewModel.exercises.keys.toList();
 
   @override
   void initState() {
@@ -61,15 +62,15 @@ class ExercisesPageState extends State<ExercisesPage> {
 
   Widget _buildExercises() {
     return ListView.builder(
-      itemCount: ExerciseViewModel.exercises.length,
+      itemCount: exerciseKeys.length,
       itemBuilder: (BuildContext context, int index) {
         if (filter == null || filter == "") {
-          return _buildRow(ExerciseViewModel.exercises[index]);
+          return _buildRow(exerciseKeys[index]);
         } else {
-          if (ExerciseViewModel.exercises[index].name
+          if (exerciseKeys[index]
               .toLowerCase()
               .contains(filter.toLowerCase())) {
-            return _buildRow(ExerciseViewModel.exercises[index]);
+            return _buildRow(exerciseKeys[index]);
           } else {
             return Container();
           }
@@ -78,7 +79,8 @@ class ExercisesPageState extends State<ExercisesPage> {
     );
   }
 
-  Widget _buildRow(Exercise e) {
+  Widget _buildRow(String key) {
+    Exercise e = ExerciseViewModel.exercises[key];
     return ListTile(
         title: Text(
           e.name,
