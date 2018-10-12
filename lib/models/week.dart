@@ -1,6 +1,7 @@
 import 'package:fitapp/models/day.dart';
 
 class Week {
+  String name;
   Day monday;
   Day tuesday;
   Day wednesday;
@@ -10,7 +11,8 @@ class Week {
   Day sunday;
 
   Week(
-      {this.monday,
+      {this.name,
+      this.monday,
       this.tuesday,
       this.wednesday,
       this.thursday,
@@ -20,6 +22,7 @@ class Week {
 
   factory Week.fromJson(Map<String, dynamic> json) {
     return new Week(
+        name: json['name'],
         monday: Day.fromJson(json['monday']),
         tuesday: Day.fromJson(json['tuesday']),
         wednesday: Day.fromJson(json['wednesday']),
@@ -30,6 +33,7 @@ class Week {
   }
 
   Map<String, dynamic> toJson() => {
+        'name': name,
         'monday': monday.toJson(),
         'tuesday': tuesday.toJson(),
         'wednesday': wednesday.toJson(),
