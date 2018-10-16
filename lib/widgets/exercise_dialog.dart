@@ -16,10 +16,23 @@ class ExerciseDialogState extends State<ExerciseDialog> {
   @override
   void initState() {
       for(int i = 0; i < widget.selectedExercises.length; i++){
-        widget.selectedExercises[i].selected = true;
+        for(int j = 0; j < ExerciseViewModel.exercises.length; j++){
+          if(widget.selectedExercises[i].name == ExerciseViewModel.exercises[j].name){
+            ExerciseViewModel.exercises[j].selected = true;
+            break;
+          }
+        }
       }
       super.initState();
+  }
+
+  @override
+  void dispose() {
+    for(int i = 0; i < ExerciseViewModel.exercises.length; i++){
+      ExerciseViewModel.exercises[i].selected = false;
     }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +49,6 @@ class ExerciseDialogState extends State<ExerciseDialog> {
                 return CheckboxListTile(
                   title: Text(ExerciseViewModel.exercises[index].name),
                   value: ExerciseViewModel.exercises[index].selected,
-                  selected: ExerciseViewModel.exercises[index].selected,
                   onChanged: (bool value) {
                     setState(() {
                       ExerciseViewModel.exercises[index].selected = value;
