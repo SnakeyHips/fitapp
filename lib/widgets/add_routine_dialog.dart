@@ -1,7 +1,6 @@
 import 'package:fitapp/models/day.dart';
 import 'package:fitapp/models/exercise.dart';
 import 'package:fitapp/models/routine.dart';
-import 'package:fitapp/viewmodels/exercise_viewmodel.dart';
 import 'package:fitapp/viewmodels/routine_viewmodel.dart';
 import 'package:fitapp/widgets/exercise_dialog.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ class AddRoutineDialog extends StatefulWidget {
 }
 
 class AddRoutineDialogState extends State<AddRoutineDialog> {
+
   Routine r = new Routine(
     name: "name",
     description: "description",
@@ -199,6 +199,7 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
                   r.sunday.description = sundayDescriptionController.text;
                   RoutineViewModel.routines.add(r);
                   await RoutineViewModel.saveFile();
+                  Navigator.of(context).pop();
                 },
                 child: Text('SAVE',
                     style: Theme.of(context)
@@ -210,6 +211,8 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
         body: SingleChildScrollView(
             child: Column(
           children: <Widget>[
+            Padding(padding: const EdgeInsets.all(8.0), child: nameField),
+            Padding(padding: const EdgeInsets.all(8.0), child: descriptionField),
             _dayTile(context, r.monday, mondayDescriptionField),
             _dayTile(context, r.tuesday, tuesdayDescriptionField),
             _dayTile(context, r.wednesday, wednesdayDescriptionField),
@@ -236,11 +239,11 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
               List<Exercise> temp = await showDialog(
                   context: context,
                   barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return ExerciseDialog(selectedExercises: d.exercises);
-                  });
+                  builder: (context) => ExerciseDialog(selectedExercises: d.exercises));
               setState(() {
-                d.exercises = temp;
+                if(temp != null){
+                  d.exercises = temp;
+                }
               });
             },
           ),
