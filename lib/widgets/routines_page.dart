@@ -40,9 +40,9 @@ class RoutinesPageState extends State<RoutinesPage> {
                   style: TextStyle(fontSize: 18.0),
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
-                    suffixIcon: GestureDetector(
-                      child: Icon(Icons.close),
-                      onTap: () {
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () {
                         controller.clear();
                         FocusScope.of(context).requestFocus(FocusNode());
                       },
