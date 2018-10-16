@@ -6,7 +6,7 @@ import 'package:fitapp/models/exercise.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ExerciseViewModel {
- static Map<String, Exercise> exercises;
+ static List<Exercise> exercises;
 
   static Future<String> _loadAsset() async {
     return await rootBundle.loadString('assets/exercises.json');
@@ -37,10 +37,10 @@ class ExerciseViewModel {
 
  static Future _loadJson(String routinesJson) async {
     try {
-      exercises = new Map<String, Exercise>();
-      Map exercisesParsed = json.decode(routinesJson);
-      for(var key in exercisesParsed.keys){
-        exercises[key.toString()] = new Exercise.fromJson(exercisesParsed[key]);
+      exercises = new List<Exercise>();
+      List exercisesParsed = json.decode(routinesJson);
+      for (int i = 0; i < exercisesParsed.length; i++) {
+        exercises.add(new Exercise.fromJson(exercisesParsed[i]));
       }
     } catch (e) {
       print(e);
