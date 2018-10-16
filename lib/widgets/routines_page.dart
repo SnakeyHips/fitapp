@@ -1,5 +1,5 @@
 import 'package:fitapp/viewmodels/routine_viewmodel.dart';
-import 'package:fitapp/widgets/day_page.dart';
+import 'package:fitapp/widgets/routine_page.dart';
 import 'package:flutter/material.dart';
 
 class RoutinesPage extends StatefulWidget {
@@ -8,300 +8,127 @@ class RoutinesPage extends StatefulWidget {
 }
 
 class RoutinesPageState extends State<RoutinesPage> {
+  TextEditingController controller = new TextEditingController();
+  String filter;
+
   @override
-  Widget build(BuildContext context) { 
+  void initState() {
+    controller.addListener(() {
+      setState(() {
+        filter = controller.text;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Material(
+        color: ThemeData.dark().canvasColor,
         child: Column(
-                children: <Widget>[
-                  Expanded(
-                      child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemCount: RoutineViewModel.routines.length,
-                    itemBuilder: (BuildContext context, int routineIndex) {
-                      return ExpansionTile(
-                          title: Text(
-                              RoutineViewModel.routines[routineIndex].name),
-                          children: <Widget>[
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: ClampingScrollPhysics(),
-                              itemCount: RoutineViewModel
-                                  .routines[routineIndex].weeks.length,
-                              itemBuilder:
-                                  (BuildContext context, int weekIndex) {
-                                return ExpansionTile(
-                                  title: Text(RoutineViewModel
-                                      .routines[routineIndex]
-                                      .weeks[weekIndex]
-                                      .name),
-                                  children: <Widget>[
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Monday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Monday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Monday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .monday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Tuesday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Tuesday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Tuesday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .tuesday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Wednesday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Wednesday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Wednesday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .wednesday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Thrusday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Thursday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Thursday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .thursday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Friday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Friday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Friday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .friday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Saturday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Saturday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Saturday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .saturday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                    Hero(
-                                      tag: routineIndex.toString() +
-                                          weekIndex.toString() +
-                                          "Sunday",
-                                      child: Material(
-                                        child: ListTile(
-                                          title: Text("Sunday"),
-                                          onTap: () async {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(
-                                                    builder: (context) {
-                                              return Scaffold(
-                                                  appBar: AppBar(
-                                                      title: Text(
-                                                    RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .name +
-                                                        " - Sunday",
-                                                  )),
-                                                  body: DayPage(
-                                                    selectedRoutine:
-                                                        routineIndex,
-                                                    selectedWeek: weekIndex,
-                                                    selectedDay:
-                                                        RoutineViewModel
-                                                            .routines[
-                                                                routineIndex]
-                                                            .weeks[weekIndex]
-                                                            .sunday,
-                                                  ));
-                                            }));
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            )
-                          ]);
-                    },
-                  ))
-                ]));
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+                child: TextField(
+                  style: TextStyle(fontSize: 18.0),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: GestureDetector(
+                      child: Icon(Icons.close),
+                      onTap: () {
+                        controller.clear();
+                        FocusScope.of(context).requestFocus(FocusNode());
+                      },
+                    ),
+                    hintText: "Search...",
+                  ),
+                  controller: controller,
+                )),
+            Expanded(
+              child: Padding(
+                  padding: EdgeInsets.only(top: 8.0), child: _buildRoutines()),
+            )
+          ],
+        ));
+  }
+
+  Widget _buildRoutines() {
+    return ListView.builder(
+      itemCount: RoutineViewModel.routines.length,
+      itemBuilder: (BuildContext context, int index) {
+        if (filter == null || filter == "") {
+          return _buildRow(context, index);
+        } else {
+          if (RoutineViewModel.routines[index].name
+              .toLowerCase()
+              .contains(filter.toLowerCase())) {
+            return _buildRow(context, index);
+          } else {
+            return Container();
+          }
+        }
+      },
+    );
+  }
+
+  Widget _buildRow(BuildContext context, int index) {
+    final bool alreadySaved = RoutineViewModel.favourites
+        .contains(RoutineViewModel.routines[index].name);
+
+    return ListTile(
+        title: Text(
+          RoutineViewModel.routines[index].name,
+          style: TextStyle(fontSize: 18.0),
+        ),
+        trailing: IconButton(
+          icon:
+              alreadySaved ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+          color: alreadySaved ? Colors.red : null,
+          onPressed: () async {
+            setState(() {
+              if (alreadySaved) {
+                RoutineViewModel.favourites
+                    .remove(RoutineViewModel.routines[index].name);
+              } else {
+                RoutineViewModel.favourites
+                    .add(RoutineViewModel.routines[index].name);
+              }
+            }
+            );
+            await RoutineViewModel.saveFavourites();
+          },
+        ),
+        onTap: () async {
+          setState(() {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return Scaffold(
+                appBar: AppBar(
+                    title: Text(RoutineViewModel.routines[index].name),
+                    actions: <Widget>[
+                      IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          //switch(_pageIndex){}
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () {
+                          //switch(_pageIndex){}
+                        },
+                      )
+                    ]),
+                body: RoutinePage(selected: index),
+              );
+            }));
+          });
+        });
   }
 }
