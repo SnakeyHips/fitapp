@@ -13,7 +13,7 @@ class Day {
     return new Day(
       name: json['name'],
       description: json['description'],
-      exercises: exercisesJson.map((i) => Exercise.fromJson(i)).toList()
+      exercises: exercisesJson.map((i) => Exercise.fromDayJson(i)).toList()
     );
   }
 
