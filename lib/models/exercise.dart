@@ -7,7 +7,7 @@ class Exercise {
   int reps;
   bool selected = false;
 
-  Exercise({this.name, this.description, this.areas, this.weight, this.sets, this.reps});
+  Exercise({this.name, this.description, this.areas, this.weight = 0.0, this.sets = 0, this.reps = 0});
 
   factory Exercise.fromJson(Map<String, dynamic> json){
     return new Exercise(
