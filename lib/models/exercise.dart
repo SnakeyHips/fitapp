@@ -5,10 +5,22 @@ class Exercise {
   double weight;
   int sets;
   int reps;
+  bool selected = false;
 
   Exercise({this.name, this.description, this.areas, this.weight, this.sets, this.reps});
 
-  factory Exercise.fromJson(Map<String, dynamic> json){
+    factory Exercise.fromJson(Map<String, dynamic> json){
+    return new Exercise(
+      name: json['name'],
+        description: json['description'],
+        areas: json['areas']
+    );
+  }
+
+  Map<String, dynamic> toJson() =>
+      {'name': name, 'description': description, 'areas': areas};
+
+  factory Exercise.fromDayJson(Map<String, dynamic> json){
     return new Exercise(
       name: json['name'],
         description: json['description'],
@@ -19,6 +31,6 @@ class Exercise {
     );
   }
 
-  Map<String, dynamic> toJson() =>
+  Map<String, dynamic> toDayJson() =>
       {'name': name, 'description': description, 'areas': areas, 'weight': weight, 'sets': sets, 'reps': reps};
 }
