@@ -2,16 +2,16 @@ import 'package:fitapp/models/exercise.dart';
 import 'package:fitapp/viewmodels/exercise_viewmodel.dart';
 import 'package:flutter/material.dart';
 
-class ExerciseDialog extends StatefulWidget {
+class ExercisesDialog extends StatefulWidget {
   final List<Exercise> selectedExercises;
 
-  ExerciseDialog({this.selectedExercises});
+  ExercisesDialog({this.selectedExercises});
 
   @override
-  State<StatefulWidget> createState() => ExerciseDialogState();
+  State<StatefulWidget> createState() => ExercisesDialogState();
 }
 
-class ExerciseDialogState extends State<ExerciseDialog> {
+class ExercisesDialogState extends State<ExercisesDialog> {
 
   @override
   void initState() {
