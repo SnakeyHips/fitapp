@@ -211,8 +211,8 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
         body: SingleChildScrollView(
             child: Column(
           children: <Widget>[
-            Padding(padding: const EdgeInsets.all(8.0), child: nameField),
-            Padding(padding: const EdgeInsets.all(8.0), child: descriptionField),
+            Padding(padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: nameField),
+            Padding(padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: descriptionField),
             _dayTile(context, r.monday, mondayDescriptionField),
             _dayTile(context, r.tuesday, tuesdayDescriptionField),
             _dayTile(context, r.wednesday, wednesdayDescriptionField),
@@ -229,7 +229,7 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
     return ExpansionTile(
       title: Text(d.name),
       children: <Widget>[
-        Padding(padding: EdgeInsets.all(8.0), child: description),
+        Padding(padding: EdgeInsets.only(left: 16.0, right: 16.0), child: description),
         ListTile(
           title: Text("Exercises"),
           subtitle: Text(d.exercises.length.toString()),
