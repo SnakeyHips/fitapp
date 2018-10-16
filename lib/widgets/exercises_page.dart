@@ -1,5 +1,6 @@
 import 'package:fitapp/models/exercise.dart';
 import 'package:fitapp/viewmodels/exercise_viewmodel.dart';
+import 'package:fitapp/widgets/exercise_page.dart';
 import 'package:flutter/material.dart';
 
 class ExercisesPage extends StatefulWidget {
@@ -10,7 +11,6 @@ class ExercisesPage extends StatefulWidget {
 class ExercisesPageState extends State<ExercisesPage> {
   TextEditingController controller = new TextEditingController();
   String filter;
-  List<String> exerciseKeys = ExerciseViewModel.exercises.keys.toList();
 
   @override
   void initState() {
@@ -62,15 +62,15 @@ class ExercisesPageState extends State<ExercisesPage> {
 
   Widget _buildExercises() {
     return ListView.builder(
-      itemCount: exerciseKeys.length,
+      itemCount: ExerciseViewModel.exercises.length,
       itemBuilder: (BuildContext context, int index) {
         if (filter == null || filter == "") {
-          return _buildRow(exerciseKeys[index]);
+          return _buildRow(context, index);
         } else {
-          if (exerciseKeys[index]
+          if (ExerciseViewModel.exercises[index].name
               .toLowerCase()
               .contains(filter.toLowerCase())) {
-            return _buildRow(exerciseKeys[index]);
+            return _buildRow(context, index);
           } else {
             return Container();
           }
@@ -79,31 +79,27 @@ class ExercisesPageState extends State<ExercisesPage> {
     );
   }
 
-  Widget _buildRow(String key) {
-    Exercise e = ExerciseViewModel.exercises[key];
-    return ListTile(
-        title: Text(
-          e.name,
-          style: TextStyle(fontSize: 18.0),
-        ),
-        subtitle: Text(e.areas),
-        onTap: () async {
-          showDialog(
-              context: context,
-              barrierDismissible: true,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                    title: Text(e.name),
-                    content: Text(e.description),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text("Close"),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      )
-                    ]);
-              });
-        });
+  Widget _buildRow(BuildContext context, int index) {
+    return Hero(
+        tag: ExerciseViewModel.exercises[index].name,
+        child: Material(
+            child: ListTile(
+                title: Text(
+                  ExerciseViewModel.exercises[index].name,
+                  style: TextStyle(fontSize: 18.0),
+                ),
+                onTap: () async {
+                  setState(() {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return Scaffold(
+                          appBar: AppBar(
+                              title:
+                                  Text(ExerciseViewModel.exercises[index].name)),
+                          body: ExercisePage(
+                              selected: index));
+                    }));
+                  });
+                })));
   }
 }
