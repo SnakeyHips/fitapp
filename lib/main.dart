@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   await TraineeViewModel.loadTrainee();
-  await RoutineViewModel.loadRoutines();
-  await ExerciseViewModel.loadExercises();
+  await RoutineViewModel.load();
+  await ExerciseViewModel.load();
   runApp(FitApp());
 }
