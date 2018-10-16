@@ -1,4 +1,4 @@
-import 'package:fitapp/models/exercise.dart';
+
 import 'package:fitapp/viewmodels/exercise_viewmodel.dart';
 import 'package:fitapp/widgets/exercise_page.dart';
 import 'package:flutter/material.dart';
@@ -41,9 +41,9 @@ class ExercisesPageState extends State<ExercisesPage> {
                   style: TextStyle(fontSize: 18.0),
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
-                    suffixIcon: GestureDetector(
-                      child: Icon(Icons.close),
-                      onTap: () {
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () {
                         controller.clear();
                         FocusScope.of(context).requestFocus(FocusNode());
                       },
