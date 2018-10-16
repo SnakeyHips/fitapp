@@ -2,7 +2,7 @@ import 'package:fitapp/models/day.dart';
 import 'package:fitapp/models/exercise.dart';
 import 'package:fitapp/models/routine.dart';
 import 'package:fitapp/viewmodels/routine_viewmodel.dart';
-import 'package:fitapp/widgets/exercise_dialog.dart';
+import 'package:fitapp/widgets/exercises_dialog.dart';
 import 'package:flutter/material.dart';
 
 class AddRoutineDialog extends StatefulWidget {
@@ -212,7 +212,7 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
             child: Column(
           children: <Widget>[
             Padding(padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: nameField),
-            Padding(padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: descriptionField),
+            Padding(padding: const EdgeInsets.all(16.0), child: descriptionField),
             _dayTile(context, r.monday, mondayDescriptionField),
             _dayTile(context, r.tuesday, tuesdayDescriptionField),
             _dayTile(context, r.wednesday, wednesdayDescriptionField),
@@ -229,7 +229,7 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
     return ExpansionTile(
       title: Text(d.name),
       children: <Widget>[
-        Padding(padding: EdgeInsets.only(left: 16.0, right: 16.0), child: description),
+        Padding(padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: description),
         ListTile(
           title: Text("Exercises"),
           subtitle: Text(d.exercises.length.toString()),
@@ -239,7 +239,7 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
               List<Exercise> temp = await showDialog(
                   context: context,
                   barrierDismissible: false,
-                  builder: (context) => ExerciseDialog(selectedExercises: d.exercises));
+                  builder: (context) => ExercisesDialog(selectedExercises: d.exercises));
               setState(() {
                 if(temp != null){
                   d.exercises = temp;
