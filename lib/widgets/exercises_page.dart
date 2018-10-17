@@ -80,9 +80,7 @@ class ExercisesPageState extends State<ExercisesPage> {
   }
 
   Widget _buildRow(BuildContext context, int index) {
-    return Hero(
-        tag: ExerciseViewModel.exercises[index].name,
-        child: Material(
+    return Material(
             child: ListTile(
                 title: Text(
                   ExerciseViewModel.exercises[index].name,
@@ -92,14 +90,10 @@ class ExercisesPageState extends State<ExercisesPage> {
                   setState(() {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                          appBar: AppBar(
-                              title:
-                                  Text(ExerciseViewModel.exercises[index].name)),
-                          body: ExercisePage(
-                              selected: index));
+                      return ExercisePage(
+                              selected: index);
                     }));
                   });
-                })));
+                }));
   }
 }
