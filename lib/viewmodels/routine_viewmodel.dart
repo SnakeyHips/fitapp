@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:async' show Future;
 import 'dart:io';
-import 'package:fitapp/models/day.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:fitapp/models/routine.dart';
 import 'package:path_provider/path_provider.dart';
@@ -79,5 +78,16 @@ class RoutineViewModel {
   static Future saveFile() async {
     File file = await getFile();
     file.writeAsString(json.encode(routines));
+  }
+
+  static bool checkName(String name) {
+    bool match = false;
+    for(int i = 0; i < routines.length; i++){
+      if (routines[i].name == name){
+        match = true;
+        break;
+      }
+    }
+    return match;
   }
 }
