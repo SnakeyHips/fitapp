@@ -1,105 +1,121 @@
-import 'package:fitapp/models/exercise.dart';
-import 'package:fitapp/viewmodels/exercise_viewmodel.dart';
-import 'package:fitapp/widgets/exercise_page.dart';
+import 'package:fitapp/widgets/add_exercise_dialog.dart';
+import 'package:fitapp/widgets/add_routine_dialog.dart';
+import 'package:fitapp/widgets/exercises_page.dart';
+import 'package:fitapp/widgets/progress_page.dart';
+import 'package:fitapp/widgets/routines_page.dart';
+import 'package:fitapp/widgets/trainee_page.dart';
 import 'package:flutter/material.dart';
 
-class ExercisesPage extends StatefulWidget {
+class HomePage extends StatefulWidget {
+
   @override
-  State createState() => ExercisesPageState();
+  _HomePageState createState() => new _HomePageState();
 }
 
-class ExercisesPageState extends State<ExercisesPage> {
-  TextEditingController controller = new TextEditingController();
-  String filter;
-
-  @override
-  void initState() {
-    super.initState();
-    controller.addListener(() {
-      setState(() {
-        filter = controller.text;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-  }
+class _HomePageState extends State<HomePage> {
+  int _pageIndex = 0;
+  bool showAdd = true;
+  final List<Widget> _pages = <Widget>[
+    RoutinesPage(),
+    ProgressPage(),
+    ExercisesPage(),
+    TraineePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        color: ThemeData.dark().canvasColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
-                child: TextField(
-                  style: TextStyle(fontSize: 18.0),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    suffixIcon: GestureDetector(
-                      child: Icon(Icons.close),
-                      onTap: () {
-                        controller.clear();
-                        FocusScope.of(context).requestFocus(FocusNode());
-                      },
-                    ),
-                    hintText: "Search...",
-                  ),
-                  controller: controller,
-                )),
-            Expanded(
-              child: Padding(
-                  padding: EdgeInsets.only(top: 8.0), child: _buildExercises()),
-            )
-          ],
-        ));
-  }
-
-  Widget _buildExercises() {
-    return ListView.builder(
-      itemCount: ExerciseViewModel.exercises.length,
-      itemBuilder: (BuildContext context, int index) {
-        if (filter == null || filter == "") {
-          return _buildRow(context, index);
-        } else {
-          if (ExerciseViewModel.exercises[index].name
-              .toLowerCase()
-              .contains(filter.toLowerCase())) {
-            return _buildRow(context, index);
-          } else {
-            return Container();
-          }
-        }
-      },
+    return Scaffold(
+      appBar: AppBar(title: Text("FitApp"), actions: <Widget>[
+        showAdd
+            ? IconButton(
+                icon: Icon(Icons.add),
+                onPressed: () async {
+                  switch (_pageIndex) {
+                    case 0:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddRoutineDialog(),
+                              fullscreenDialog: true));
+                      break;
+                    case 2:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddExerciseDialog(),
+                              fullscreenDialog: true));
+                      break;
+                  }
+                })
+            : null,
+        PopupMenuButton(
+          itemBuilder: (context) => <PopupMenuItem>[
+                PopupMenuItem<String>(
+                    child: const Text("Settings"), value: "Settings"),
+                PopupMenuItem<String>(
+                    child: const Text("About"), value: "About")
+              ],
+          onSelected: (result) async {
+            if (result == "Settings") {
+              //open settings here
+            } else if (result == "About") {
+              showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                        title: Text("FitApp - About"),
+                        content: Text(""),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Close"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ]);
+                  });
+            }
+          },
+        )
+      ]),
+      body: _pages[_pageIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: onTabTapped,
+          currentIndex: _pageIndex,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.date_range),
+                title: Text(''),
+                activeIcon: Icon(Icons.date_range,
+                    color: ThemeData.dark().accentColor)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.assessment),
+                title: Text(''),
+                activeIcon: Icon(Icons.assessment,
+                    color: ThemeData.dark().accentColor)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.fitness_center),
+                title: Text(''),
+                activeIcon: Icon(Icons.fitness_center,
+                    color: ThemeData.dark().accentColor)),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.face),
+                title: Text(''),
+                activeIcon:
+                    Icon(Icons.face, color: ThemeData.dark().accentColor)),
+          ]),
     );
   }
 
-  Widget _buildRow(BuildContext context, int index) {
-    return Hero(
-        tag: ExerciseViewModel.exercises[index].name,
-        child: Material(
-            child: ListTile(
-                title: Text(
-                  ExerciseViewModel.exercises[index].name,
-                  style: TextStyle(fontSize: 18.0),
-                ),
-                onTap: () async {
-                  setState(() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                          appBar: AppBar(
-                              title:
-                                  Text(ExerciseViewModel.exercises[index].name)),
-                          body: ExercisePage(
-                              selected: index));
-                    }));
-                  });
-                })));
+  void onTabTapped(int index) {
+    setState(() {
+      _pageIndex = index;
+      if (index > 2) {
+        showAdd = false;
+      } else {
+        showAdd = true;
+      }
+    });
   }
 }
