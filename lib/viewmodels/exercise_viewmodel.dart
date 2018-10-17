@@ -47,8 +47,19 @@ class ExerciseViewModel {
     }
   }
 
-    static Future saveFile() async {
+  static Future saveFile() async {
     File file = await getFile();
     file.writeAsString(json.encode(exercises));
+  }
+
+    static bool checkName(String name) {
+    bool match = false;
+    for(int i = 0; i < exercises.length; i++){
+      if (exercises[i].name == name){
+        match = true;
+        break;
+      }
+    }
+    return match;
   }
 }
