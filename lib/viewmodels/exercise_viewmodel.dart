@@ -35,10 +35,10 @@ class ExerciseViewModel {
     }
   }
 
- static Future _loadJson(String routinesJson) async {
+ static Future _loadJson(String exercisesJson) async {
     try {
       exercises = new List<Exercise>();
-      List exercisesParsed = json.decode(routinesJson);
+      List exercisesParsed = json.decode(exercisesJson);
       for (int i = 0; i < exercisesParsed.length; i++) {
         exercises.add(new Exercise.fromJson(exercisesParsed[i]));
       }
