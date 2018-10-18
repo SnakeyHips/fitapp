@@ -11,6 +11,7 @@ class AddRoutineDialog extends StatefulWidget {
 }
 
 class AddRoutineDialogState extends State<AddRoutineDialog> {
+  final _formKey = GlobalKey<FormState>();
 
   Routine r = new Routine(
     name: "name",
@@ -182,46 +183,59 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('New routine'),
-          actions: [
-            FlatButton(
-                onPressed: () async {
-                  r.name = nameController.text;
-                  r.description = descriptionController.text;
-                  r.monday.description = mondayDescriptionController.text;
-                  r.tuesday.description = tuesdayDescriptionController.text;
-                  r.wednesday.description = wednesdayDescriptionController.text;
-                  r.thursday.description = thursdayDescriptionController.text;
-                  r.friday.description = fridayDescriptionController.text;
-                  r.saturday.description = saturdayDescriptionController.text;
-                  r.sunday.description = sundayDescriptionController.text;
-                  RoutineViewModel.routines.add(r);
-                  await RoutineViewModel.saveFile();
-                  Navigator.of(context).pop();
-                },
-                child: Text('SAVE',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subhead
-                        .copyWith(color: Colors.white))),
-          ],
-        ),
-        body: SingleChildScrollView(
-            child: Column(
-          children: <Widget>[
-            Padding(padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: nameField),
-            Padding(padding: const EdgeInsets.all(16.0), child: descriptionField),
-            _dayTile(context, r.monday, mondayDescriptionField),
-            _dayTile(context, r.tuesday, tuesdayDescriptionField),
-            _dayTile(context, r.wednesday, wednesdayDescriptionField),
-            _dayTile(context, r.thursday, thursdayDescriptionField),
-            _dayTile(context, r.friday, fridayDescriptionField),
-            _dayTile(context, r.saturday, saturdayDescriptionField),
-            _dayTile(context, r.sunday, sundayDescriptionField),
-          ],
-        )));
+    return Form(
+        key: _formKey,
+        child: Scaffold(
+            appBar: AppBar(
+              title: const Text('New routine'),
+              actions: [
+                FlatButton(
+                    onPressed: () async {
+                      if (_formKey.currentState.validate()) {
+                        r.name = nameController.text;
+                        r.description = descriptionController.text;
+                        r.monday.description = mondayDescriptionController.text;
+                        r.tuesday.description =
+                            tuesdayDescriptionController.text;
+                        r.wednesday.description =
+                            wednesdayDescriptionController.text;
+                        r.thursday.description =
+                            thursdayDescriptionController.text;
+                        r.friday.description = fridayDescriptionController.text;
+                        r.saturday.description =
+                            saturdayDescriptionController.text;
+                        r.sunday.description = sundayDescriptionController.text;
+                        RoutineViewModel.routines.add(r);
+                        await RoutineViewModel.saveFile();
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Text('SAVE',
+                        style: Theme.of(context)
+                            .textTheme
+                            .subhead
+                            .copyWith(color: Colors.white))),
+              ],
+            ),
+            body: SingleChildScrollView(
+                child: Column(
+              children: <Widget>[
+                Padding(
+                    padding: const EdgeInsets.only(
+                        top: 16.0, left: 16.0, right: 16.0),
+                    child: nameField),
+                Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: descriptionField),
+                _dayTile(context, r.monday, mondayDescriptionField),
+                _dayTile(context, r.tuesday, tuesdayDescriptionField),
+                _dayTile(context, r.wednesday, wednesdayDescriptionField),
+                _dayTile(context, r.thursday, thursdayDescriptionField),
+                _dayTile(context, r.friday, fridayDescriptionField),
+                _dayTile(context, r.saturday, saturdayDescriptionField),
+                _dayTile(context, r.sunday, sundayDescriptionField),
+              ],
+            ))));
   }
 
   ExpansionTile _dayTile(
@@ -229,7 +243,9 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
     return ExpansionTile(
       title: Text(d.name),
       children: <Widget>[
-        Padding(padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0), child: description),
+        Padding(
+            padding: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+            child: description),
         ListTile(
           title: Text("Exercises"),
           subtitle: Text(d.exercises.length.toString()),
@@ -239,9 +255,10 @@ class AddRoutineDialogState extends State<AddRoutineDialog> {
               List<Exercise> temp = await showDialog(
                   context: context,
                   barrierDismissible: false,
-                  builder: (context) => ExercisesDialog(selectedExercises: d.exercises));
+                  builder: (context) =>
+                      ExercisesDialog(selectedExercises: d.exercises));
               setState(() {
-                if(temp != null){
+                if (temp != null) {
                   d.exercises = temp;
                 }
               });
