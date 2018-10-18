@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       break;
                   }
                 })
-            : null,
+            : Icon(null),
         PopupMenuButton(
           itemBuilder: (context) => <PopupMenuItem>[
                 PopupMenuItem<String>(
