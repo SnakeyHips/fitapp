@@ -10,32 +10,40 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.indigo.shade200,
-        body: Stack(
-          children: <Widget>[
+        floatingActionButton: Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 35),
+            child: FloatingActionButton(
+              child: Icon(Icons.add),
+              backgroundColor: Colors.grey.shade200,
+              foregroundColor: Colors.black,
+              onPressed: () {},
+            )),
+        body: Stack(children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height / 1.1,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.deepPurple.shade900,
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(100.0))),
-            child: Text('hello')),
+              height: MediaQuery.of(context).size.height / 1.1,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: Colors.deepPurple.shade900,
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(100.0))),
+              child: Text('hello')),
           Container(
-            height: MediaQuery.of(context).size.height / 1.5,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.deepPurple.shade400,
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(100.0))),
-            child: Text('hello')),
+              height: MediaQuery.of(context).size.height / 1.5,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: Colors.deepPurple.shade400,
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(100.0))),
+              child: Text('hello')),
           Container(
-            height: MediaQuery.of(context).size.height / 2.3,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: Colors.pink.shade300,
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(100.0))),
-            child: Text('hello')),
+              height: MediaQuery.of(context).size.height / 2.3,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: Colors.pink.shade300,
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(100.0))),
+              child: Text('hello')),
           Container(
             height: MediaQuery.of(context).size.height / 5,
             width: MediaQuery.of(context).size.width,
@@ -57,9 +65,9 @@ class HomePageState extends State<HomePage> {
                         height: 40.0,
                         width: 40.0,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Colors.pink.shade300)
-                        ),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 2.0, color: Colors.pink.shade300)),
                         child: Icon(Icons.sentiment_satisfied),
                       ),
                     )),
@@ -80,9 +88,9 @@ class HomePageState extends State<HomePage> {
                         height: 40.0,
                         width: 40.0,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Colors.pink.shade300)
-                        ),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 2.0, color: Colors.pink.shade300)),
                         child: Icon(Icons.trending_up),
                       ),
                     )),
@@ -103,9 +111,9 @@ class HomePageState extends State<HomePage> {
                         height: 40.0,
                         width: 40.0,
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2.0, color: Colors.pink.shade300)
-                        ),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                width: 2.0, color: Colors.pink.shade300)),
                         child: Icon(Icons.favorite_border),
                       ),
                     )),
@@ -119,7 +127,6 @@ class HomePageState extends State<HomePage> {
               ],
             )),
           ),
-          
         ]));
   }
 }
